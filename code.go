@@ -9,14 +9,42 @@ import (
 // FilterAndSort filters numbers greater than or equal to the threshold and sorts them.
 func FilterAndSort(nums []int, threshold int) []int {
 	// TODO: Implement this function
-	return nil // Placeholder return
+	var filtered []int
+	for _, num := range nums {
+		if num >= threshold {
+			filtered = append(filtered, num)
+		}
+	}
+	sort.Ints(filtered)
+	return filtered
+
 }
 
 // FindMostFrequent finds the most frequent word in a slice of strings.
 // Returns an error if the slice is empty.
 func FindMostFrequent(words []string) (string, error) {
 	// TODO: Implement this function
-	return "", errors.New("not implemented") // Placeholder return
+
+	if len(words) == 0 {
+		return "", errors.New("input slice is empty")
+	}
+
+	wordCount := make(map[string]int)
+	for _, word := range words {
+		wordCount[word]++
+	}
+
+	mostFrequentWord := ""
+	maxCount := 0
+	for word, count := range wordCount {
+		if count > maxCount {
+			mostFrequentWord = word
+			maxCount = count
+		}
+	}
+
+	return mostFrequentWord, nil
+
 }
 
 func main() {
